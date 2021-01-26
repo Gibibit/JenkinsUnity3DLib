@@ -1,3 +1,6 @@
+def buildNumber = ""
+def version = ""
+
 def increaseAndroidBuildNumber() {
 	filename = './ProjectSettings/ProjectSettings.asset'
 
