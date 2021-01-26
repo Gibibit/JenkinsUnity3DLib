@@ -23,7 +23,6 @@ def increaseAndroidBuildNumber(root) {
 
 	fh.withWriter('utf8') {
 		writer -> lines.each { line -> 
-			println(line)
 			writer.writeLine(line)
 		}
 	}
@@ -58,7 +57,6 @@ def increaseBundlePatchVersion(root) {
 
 	fh.withWriter('utf8') {
 		writer -> lines.each { line -> 
-			println(line)
 			writer.writeLine(line)
 		}
 	}
