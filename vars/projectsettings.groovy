@@ -1,4 +1,7 @@
+@groovy.transform.Field
 def buildNumber = ""
+
+@groovy.transform.Field
 def version = ""
 
 def increaseAndroidBuildNumber() {
