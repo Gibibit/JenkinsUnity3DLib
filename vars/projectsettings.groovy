@@ -4,6 +4,7 @@ def buildNumber = ""
 @groovy.transform.Field
 def version = ""
 
+@NonCPS
 def increaseAndroidBuildNumber(root) {
 	filename = root + '/ProjectSettings/ProjectSettings.asset'
 
@@ -28,6 +29,7 @@ def increaseAndroidBuildNumber(root) {
 	}
 }
 
+@NonCPS
 def increaseBundlePatchVersion(root) {
 	filename = root + '/ProjectSettings/ProjectSettings.asset'
 
