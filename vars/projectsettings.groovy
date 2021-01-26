@@ -4,8 +4,8 @@ def buildNumber = ""
 @groovy.transform.Field
 def version = ""
 
-def increaseAndroidBuildNumber(env) {
-	filename = env.workspace + '/ProjectSettings/ProjectSettings.asset'
+def increaseAndroidBuildNumber(root) {
+	filename = root + '/ProjectSettings/ProjectSettings.asset'
 
 	// read all the lines into a list, each line is an element in the list
 	File fh = new File(filename)
@@ -28,8 +28,8 @@ def increaseAndroidBuildNumber(env) {
 	}
 }
 
-def increaseBundlePatchVersion(env) {
-	filename = env.workspace + '/ProjectSettings/ProjectSettings.asset'
+def increaseBundlePatchVersion(root) {
+	filename = root + '/ProjectSettings/ProjectSettings.asset'
 
 	// read all the lines into a list, each line is an element in the list
 	File fh = new File(filename)
