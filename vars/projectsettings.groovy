@@ -1,8 +1,47 @@
 @groovy.transform.Field
-def buildNumber = ""
+def buildNumber = "-1"
 
 @groovy.transform.Field
-def version = ""
+def version = "0.0.0"
+
+@NonCPS
+def getBundleVersion(root) {
+	filename = root + '/ProjectSettings/ProjectSettings.asset'
+
+	// read all the lines into a list, each line is an element in the list
+	File fh = new File(filename)
+	def lines = fh.readLines()
+	lines.eachWithIndex{ it, i -> 
+		def tag2 = "bundleVersion: "
+		if(it.indexOf(tag2) != -1) {
+			def split2 = it.split(tag2)
+			version = split2[1]
+			return version
+		}
+	}
+	version = "0.0.0"
+	return "0.0.0"
+}
+
+@NonCPS
+def getAndroidBuildNumber(root) {
+	filename = root + '/ProjectSettings/ProjectSettings.asset'
+
+	// read all the lines into a list, each line is an element in the list
+	File fh = new File(filename)
+	def lines = fh.readLines()
+	lines.eachWithIndex{ it, i -> 
+		def tag = "AndroidBundleVersionCode: "
+		if(it.indexOf(tag) != -1) {
+			def split1 = it.split(tag)
+			buildNumber = split1[1]
+			return buildNumber
+		}
+	}
+	buildNumber = "-2"
+	return "-2"
+}
+
 
 @NonCPS
 def increaseAndroidBuildNumber(root) {
