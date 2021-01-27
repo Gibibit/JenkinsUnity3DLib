@@ -54,8 +54,8 @@ def increaseAndroidBuildNumber(root) {
 		def tag = "AndroidBundleVersionCode: "
 		if(it.indexOf(tag) != -1) {
 			def split1 = it.split(tag)
-			buildNumber = split1[1]
 			def newVersion = Integer.parseInt(split1[1]) + 1
+			buildNumber = newVersion.toString()
 			lines[i] = split1[0] + tag + newVersion
 		}
 	}
