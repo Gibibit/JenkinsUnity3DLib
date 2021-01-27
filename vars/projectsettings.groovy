@@ -76,21 +76,37 @@ def increaseBundlePatchVersion(root) {
 	def lines = fh.readLines()
 	lines.eachWithIndex{ it, i -> 
 		def tag2 = "bundleVersion: "
+		//
+		// Find the bundleVersion line
+		//
 		if(it.indexOf(tag2) != -1) {
+			//
+			// split2 contains the version bit of the bundleVersion line as string
+			// e.g.: ["  ", "3.0.6"]
+			// the first array entry is 2 spaces because of the way ProjectSettings is indented
+			//
 			def split2 = it.split(tag2)
-			version = split2[1]
+			//
+			// versionSplit contains the major, minor and patch version as string
+			// e.g.: ["3","0","6"]
+			//
 			def versionSplit = split2[1].split("\\.")
 			if(versionSplit.size() >= 3) {
 				def patchVersion = Integer.parseInt(versionSplit[2]) + 1
 				versionSplit[2] = patchVersion
 			}
-			lines[i] = split2[0] + tag2
+			def newVersion = ""
 			for(i2 in 0 .. versionSplit.size()-1) {
-				lines[i] += versionSplit[i2]
+				newVersion += versionSplit[i2]
 				if(i2 < versionSplit.size() - 1) {
-					lines[i] += "."
+					newVersion += "."
 				}
 			}
+			//
+			// store new version globally for easy access from pipeline
+			//
+			version = newVersion
+			lines[i] = split2[0] + tag2 + newVersion
 		}
 	}
 
